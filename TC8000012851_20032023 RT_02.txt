@@ -1,0 +1,357 @@
+CONSULTORIA PARA UTILIZAÇÃO DO PRÉPROCESSADOR GMSH EM ATIVIDADES DE
+FURNAS
+(GMSH+SLAE+PARAVIEW+INSTALAÇÃO) –
+TC 8000012851
+
+RELATÓRIO DOS SERVIÇOS/FORNECIMENTO EXECUTADOS
+04/05/2023
+
+ESPER Engenharia de Projetos
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre
+Tokyo, 2690, sala 1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+
+1
+
+Sumário
+1. DESCRITIVO DO OBJETO .............................................................................. 2
+2. TABELA DOS RELATÓRIOS DE ENTREGAS ................................................ 2
+3. PROVA DE CONCEITO DA MODELAGEM E IMPLEMENTAÇÃO .................. 2
+4. CONCLUSÃO ................................................................................................. 17
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+2
+
+1. DESCRITIVO DO OBJETO
+
+Neste relatório, em cumprimento às cláusulas do Termo contratual nº:
+8000012851, apresentamos o relatório técnico de entregas parciais e/ou serviços
+executados.
+O objeto do presente relatório em análise trata-se de uma implementação,
+validação e consultoria de integração computacional para análise estrutural de
+radier estaqueado em atividades de FURNAS.
+
+2. TABELA DOS RELATÓRIOS DE ENTREGAS
+
+Entrega
+
+Data
+
+Assunto
+
+Autor
+
+01
+
+Definições dos itens: do cronograma físico financeiro, do SLAE a
+ser utilizado na análise linear, da geometria e suas
+24/03/23 parametrizações, dos carregamentos aplicados, das análises a
+serem implementadas e do pós-processamento. Demonstração
+da capacidade de implementação computacional.
+
+Jonathas
+
+02
+
+04/05/23 Prova de conceito da modelagem
+
+Jonathas
+
+3. PROVA DE CONCEITO DA MODELAGEM E IMPLEMENTAÇÃO
+Conforme discutido na reunião que definiu a entrega do relatório R01, foi
+implementado uma rotina automatizada para geração da geometria de uma
+estrutura de concreto parametrizada, como mostra a Figura 1.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+3
+
+Figura 1: Imagem da tipologia do radier-estaqueado para parametrização.
+O arquivo de entrada com as informações a serem processadas pela rotina
+computacional implementada está no formato (.txt) e segue a formatação de dados
+no estilo TOML (https://toml.io/en/). Na Figura 2 são mostrados os dados que foram
+considerados para controlar a geometria paramétrica.
+
+Figura 2: Imagem da tipologia do radier-estaqueado para parametrização.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+4
+
+Como visto na imagem acima, além de controlar a geometria paramétrica
+o arquivo de entrada também permite o controle dos materiais dela, sendo que,
+todas as informações relativas as unidades de medidas estão acompanhando cada
+um dos critérios quando se faz necessário. Tais informações constam após o grifo
+de comentário do padrão TOML, que é dado pelo caractere ‘#’.
+Nas imagens a seguir, serão demonstradas as capacidades paramétricas
+da rotina implementada. Os valores utilizados não indicam algum tipo de restrição,
+sendo apenas colocados como forma de evidenciar as funções de controles dos
+parâmetros.
+
+Figura 3: Variação do diâmetro da base: 2220 cm (esq.), 1400 cm (dir.).
+
+Figura 4: Variação do diâmetro do topo: 900 cm (esq.), 500 cm (dir.).
+
+Figura 5: Variação da altura da base: 50 cm (esq.), 150 cm (dir.).
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+5
+
+Figura 6: Variação da altura do tronco de cone: 350 cm (esq.), 150 cm (dir.).
+
+Figura 7: Variação da altura do topo: 25 cm (esq.), 100 cm (dir.).
+
+Figura 8: Variação do número de estacas: 15 (esq.), 10 (dir.).
+
+Figura 9: Variação do diâmetro das estacas: 30 cm (esq.), 100 cm (dir.).
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+6
+
+Figura 10: Variação da distância da face externa da base até o eixo das estacas:
+200 cm (esq.), 400 cm (dir.).
+
+Figura 11: Variação da altura das estacas: 712 cm (esq.), 1512 cm (dir.).
+
+Atendendo ao item 2.2.2 do APENSO A, foi implementando uma geração
+de malha composta com um elemento tetraédrico 3D (C3D4) de 4 nós e 1 ponto de
+integração, como mostrado na Figura 12. Para o total cumprimento deste item
+resta-se ainda a implementação do solo envolvente. Também é exemplificado os
+pontos de aplicação dos carregamentos.
+
+Figura 12: Elemento tetraédrico implementado: GMSH (esq.), pontos de aplicação
+da carga dinâmica (dir.).
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+7
+
+Atendendo ao item 2.2.3 do APENSO A, foi implementando um controle de
+malha contendo a dimensão mínima, e máxima, do elemento além de um
+multiplicador global da dimensão característica do elemento. Esse fator age da
+seguinte forma: é computado de forma local o melhor tamanho de malha que
+atenda cada um dos vários elementos da geometria (estacas, radier e futuramente
+o solo envolvente), então estes valores são restritos pelos tamanhos de malha
+mínimo e máximos, sendo então, multiplicados pelo fator de malha que age de
+forma global. Na figura 13 está apresentado o local de entrada para estes controle
+no arquivo txt.
+
+Figura 13: Controle global da malha.
+Atendendo ao item 2.2.4 do APENSO A, a rotina computacional está
+exportando um arquivo “XXXXXX_mesh.inp”. Este arquivo está estruturado no
+padrão ‘.inp’ que é entendido pelo SLAE escolhido (Calculix), mas também pode
+ser aberto pelo em editor de texto escolhido e que interprete o padrão UTF-8
+(ASCII), normalmente qualquer editor de texto que abra um arquivo ‘.txt’ é capaz
+de interpretar este documento.
+A estrutura do arquivo “XXXXXX_mesh.inp” se dá da forma descrita a
+seguir:
+*NODE = descrição dos números dos nós e as suas coordenadas seguindo
+o padrão (nº do nó, coord. X. coord. Y, coord. Z)
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+8
+
+Figura 14: Estrutura do *NODE.
+
+*NODE = descrição dos números dos nós e as suas coordenadas seguindo
+o padrão (nº do nó, coord. X. coord. Y, coord. Z)
+
+Figura 14: Estrutura do *NODE.
+*ELEMENT, type=C3D4 = descrição dos números dos elementos e os
+quatro nós que o compõe segundo a sequência da figura 15.
+
+Figura 15: Estrutura do *ELEMENT. (esq.), elemento C3D4 (dir.).
+*NSET = descrição do grupo de nós utilizados para alguma condição de
+contorno. Composto pelo número dos nós.
+
+Figura 16: Estrutura do *NSET.
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+9
+
+*ELSET = descrição do grupo de elementos utilizados para alguma
+aplicação de material ou condição de contorno, se necessário. Composto pelo
+número dos elementos.
+
+Figura 17: Estrutura do * ELSET.
+
+Atendendo ao item 2.2.3.1 do APENSO A e conforme definido em reunião,
+a rotina computacional está exportando para visualização no software Paraview os
+seguintes resultados: deslocamentos e tensões devido à carregamento estático,
+ver figuras 18 à 25.
+
+Figura 18: Tensões Magnitude.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+10
+
+Figura 19: Tensões normais xx.
+
+Figura 20: Tensões normais yy.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+11
+
+Figura 21: Tensões normais zz.
+
+Figura 22: Tensões cisalhantes xy.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+12
+
+Figura 23: Tensões cisalhantes yz.
+
+Figura 24: Tensões cisalhantes xz.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+13
+
+Figura 25: Deslocamentos devido ao carregamento estático.
+
+A rotina implementada tratou os dados e respostas de tal forma que
+possibilita a visualização dos em tempo real, no Paraview, dos dados de cada nó
+indicado pelo usuário. Ver figura abaixo.
+
+Figura 26: Acesso aos resultados por nó no Paraview.
+
+Atendendo ao item 2.2.3.2 do APENSO A, a rotina computacional está
+processando e exportando os resultados no número de modos de vibração
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+14
+
+especificados pelo usuário. Como o número total de modos terá influência no tempo
+total de processamento, este critério foi deixado para o usuário definir.
+
+Figura 27: Critérios para cálculo modal.
+Conforme o apenso, estão sendo gerados os valores numéricos de modos,
+frequências dos modos de vibração e suas participações modais. Na figura
+exemplifica 10 modos mas este valor depende do critério definido pelo usuário.
+
+Figura 28: Relatório da vibração livre.
+
+Os modos de vibração também estão sendo exportados para o Paraview
+para sua visualização da quantidade de modos escolhida pelo usuário. Ver figura
+29.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+15
+
+Figura 29: Primeiros 4 modos de vibração.
+A análise dinâmica de vibração forçada está sendo exportados para
+visualização no Paraview, de forma análoga à vibração livre para análise modal,
+fica a cargo do usuário a geração e escolha dos pontos em que irá visualizar a
+evolução temporal do ponto em análise. Ver Figura 30.
+
+Figura 30: Deformada da seção e Time-history de ponto escolhido.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+16
+
+Também estão sendo calculados e gerados as tensões principais do vetor
+de tensão do elemento C3D4. Na Figura 31 demonstramos a visualização esperada
+para uma seção.
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+17
+
+Figura 31: Valores e direções principais de 1, 2 e 3 do tensor de Cauchy.
+
+4. CONCLUSÃO
+A geração paramétrica do radier está implementada, sendo necessária
+apenas implementar limites para as dimensões, caso seja o desejo escolha de
+Furnas de forma a garantir a fidedignidade da geometria no modelo numérico.
+Todos os cálculos da segunda entrega estão sendo processados:
+processamento estático, processamento modal e dinâmico. Valores de tensões,
+deslocamentos, modos de vibração e frequências naturais, deslocamentos no
+tempo devido à análise de vibração forçada e a análise estática estão convertidas
+para visualização no Paraview e podem ser exportadas à critério do usuário para o
+formato “csv”.
+O processamento está totalmente automatizado para execução em Linux,
+sendo necessário digitar no terminal “furnapy” para ser iniciado o ambiente virtual
+em Python, sendo este que irá carregar as bibliotecas desenvolvidas e instaladas
+além de executar o arquivo de controle das rotinas do processamento.
+Anexado a este, segue dois vídeos capturados da tela de computador que
+demonstram o funcionamento da automatização, além das capacidades de
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+18
+
+algumas das funções desenvolvidas, mas precisamente, uma série temporal da
+vibração forçada.
+Todo
+o
+código
+desenvolvido
+está
+disponível
+em
+https://github.com/xJohnKennedy/FurnasDinamica
+para
+visualização
+e
+acompanhamento. Lá constam, além do código desenvolvido, os códigos fontes
+dos outros softwares “open source” que foram utilizados.
+A Sem mais comentários e à disposição para qualquer outro esclarecimento.
+Atenciosamente,
+Goiânia, 04 de maio de 2023.
+
+_________________________
+Walid Joseph Esper
+Eng. Civil CREA-GO 7119/D
+
+__________________________
+Jonathas Kennedy Alves Pereira
+Eng. Civil CREA-GO 1019655690/D
+
+Av. Dep. Jamel Cecílio esq. com Av. Eng. Eurico Viana, Metropolitan Mall, Torre Tokyo, 2690, sala
+1417, Jardim Goiás. Goiânia – GO – CEP: 74.815-457
+Tel.:+55 62 3286.4614
+
+

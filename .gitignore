@@ -1,0 +1,18 @@
+*.vtu
+.venv/**
+.vscode/**
+*.msh
+*.vtk
+*.geo
+*.inp
+*.dat
+*.out
+*.fbd
+*.frd
+*.sta
+*.pvd
+*.m
+*.cvg
+*.eig
+*.lst
+teste - Copia.txt

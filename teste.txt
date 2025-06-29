@@ -1,0 +1,135 @@
+# Documento formatado em TOML
+# https://toml.io/en/
+#
+# Autores: Jonathas Kennedy Alves Pereira / Phablo Veríssimo Inácio Dias
+# Data: 12/02/2022 
+# Assunto: modelo de arquivo de configuração de radier estaqueado
+
+titulo = "Radier Estaqueado"
+
+# ----------------------------------------------------- #
+# ------------------ DADOS DO RADIER ------------------ #
+# ----------------------------------------------------- #
+[geometria]
+
+    diam_base = 2220            # diametro da base do radier (cm)
+    diam_topo = 900             # diametro do topo do radier (cm)
+    h_base = 50                 # altura da base (cm)
+    h_cone = 350                # altura do tronco de cone (cm)
+    h_topo = 25                 # altura do topo (cm)
+
+    mod_E = 210000e6            # modulo de elasticidade (Pa)
+    poi = 0.3                   # coeficiente de Poisson
+    den = 7800                  # densidade (kg/m³)
+
+
+# ------ dados referentes a geometria das estacas ----- #
+# ----------------------------------------------------- #
+[estacas]
+
+    num_est  =  15      # numero de estacas
+    diam_est =  60      # diametro das estacas (cm)
+    h_est    =  712     # altura das estacas (cm)
+    cob_est  =  200     # distancia da face de concreto ao eixo das estacas (cm)
+
+
+# --- dados referentes ao volume de solo envolvente --- #
+# ----------------------------------------------------- #
+[solo]
+
+    base_y      =  3000      # comprimento da aresta 1 do solo (cm)
+    base_z      =  3000      # comprimento da aresta 2 do solo (cm)
+    h_solo      =  1000     # profundidade do solo (cm)
+
+    mod_E = 79.0e6            # modulo de elasticidade (Pa)
+    poi = 0.35                   # coeficiente de Poisson
+    den = 2000                  # densidade (kg/m³)
+	
+
+# ----------------------------------------------------- #
+# ---------------- DADOS PARA ANALISE ----------------- #
+# ----------------------------------------------------- #
+
+# ----------------------- gerais ---------------------- #
+# ----------------------------------------------------- #
+[geral]
+    gravidade = 9.81            # aceleração da gravidade m/s²
+    FatorDeMalha = 1           	# multiplicador geral do tamanho da malha
+    TamanhoMalha = 0.4
+	MalhaMin = 0.1
+	MalhaMax = 1.0
+
+
+# ------------------ vibração livre ------------------- #
+# ----------------------------------------------------- #
+[freq_natural]
+
+    num_modos = 10          # numero de modos para calcular
+    #
+    # nos criterios abaixo, preencher 0 se deseja utilizar os valores 'default' 
+    menor_freq = 1e-5       # menor frequencia natural desejada em rad/s
+    maior_freq = 0          # maior frequencia natural desejada em rad/s
+
+
+# --------------------- vibração forçada --------------------- #
+# -- dados referentes a interacao modal e ao amortecimento --- #
+# ------------------------------------------------------------ #	
+[vib_forcada]
+
+    # numero de modos para consideradar na interação modal utilizada para descrever
+    # o comportamento dinamico da estrutura, por exemplo, se forem inseridos os valores:
+    # num_modos_ini  =  1 e num_modos_ult  =  5, será considerado na composicao modal
+    # os modos 1, 2, 3, 4 e 5;
+    # Se for inserido algum valor igual a 0, será considerado um dos os valores extremos indicados no
+    # campo [freq_natural][num_modos], por exemplo, se inserido  valor num_modos_ini  =  2,
+    # num_modos_ult  =  0 e [freq_natural][num_modos] = 10, então os modos considerados para a
+    # comportamento modal serao: 2,3,4,5,6,7,8,9,10;
+    # Se inserido  valor num_modos_ini  =  0,
+    # num_modos_ult  =  5 e [freq_natural][num_modos] = 10, então os modos considerados para a
+    # comportamento modal serao: 1,2,3,4,5;
+
+    num_modos_ini  =  0        # primeiro modo da composicao modal
+    num_modos_ult  =  0        # ultimo modo da composicao modal
+
+    # amortecimento viscoso a ser aplicado para os modos definidos por num_modos_ini e num_modos_ult
+
+    amortecimento = 0.02
+
+
+
+# ---------------- vibração forçada ------------------- #
+# --------- dados referentes aos carregamentos -------- #
+# ----------------------------------------------------- #	
+[cargas]
+
+    num_cargas  =  12           # numero de pontos de carregamentos aplicados no bloco na parte superior
+    diam_carga 	=  300          # diametro  do circulo de distribuição das cargas (cm)
+    incremento_tempo = 1e-3     # tempo em segundos
+    tempo_final = 10e-3         # tempo em segundos
+
+
+    # arquivos de leitura de carregamentos estaticos
+    # car_est_0 tem predominância sobre outros carregamentos
+    # para desativar fazer car_est_0 = 0
+
+    car_est_0 = 0
+    car_est_1 = 500000
+    car_est_2 = -500000
+    car_est_3 = 900000
+    car_est_4 = -500000
+    car_est_5 = 500000
+    car_est_6 = 100000
+    car_est_7 = 200000
+    car_est_8 = -100000
+    car_est_9 = -500000
+    car_est_10 = -200000
+    car_est_11 = 300000
+    car_est_12 = -300000
+
+    # arquivos de leitura de carregamentos para vibração forçada
+    # car_din_0 tem predominância sobre outros carregamentos
+    # para desativar fazer car_din_0 = 0
+    
+    car_din_0 = "PULAR.txt"
+    car_din_1 = "PULAR1.txt" 
+    car_din_2 = "PULAR.txt" 
