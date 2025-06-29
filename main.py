@@ -260,7 +260,7 @@ def executa_cgx(nome_arquivo):
         os.system(comando)
         pass
     elif os.name == 'posix':
-        comando = "cgx_2.20.1 -bg % s" % (
+        comando = "cgx -bg %s" % (
             nome_arquivo)
         os.system(comando)
         pass
@@ -287,7 +287,7 @@ sys ccx %s_solve
     if os.name == 'posix':
         arquivo.append("""
 # solve
-sys ccx_2.19_MT %s_solve
+sys ccx %s_solve
 
 """ % (nome_arquivo))
 
@@ -341,7 +341,7 @@ send solo abq
     if os.name == 'posix':
         arquivo.append("""
 # solve
-# sys ccx_2.19_MT %s_solve
+# sys ccx %s_solve
 
 """ % (nome_arquivo))
 
