@@ -1052,7 +1052,15 @@ def main_func():
     """Gerenciamento geral geral do processamento.
     """
 
+    # Verificar se estamos trabalhando com arquivo na pasta teste
     nome_arquivo, dados_txt = ler_arquivo()
+    
+    # Se o arquivo está na pasta teste, mudar para ela
+    if nome_arquivo.startswith('teste/'):
+        print(f"🔄 Mudando para pasta: {os.path.dirname(nome_arquivo)}")
+        os.chdir(os.path.dirname(nome_arquivo))
+        nome_arquivo = os.path.basename(nome_arquivo)  # Remove o caminho, mantém só o nome
+    
     tipo_calculo = escolhe_calculo()
     tem_solo = escolhe_solo()
 
@@ -1080,6 +1088,10 @@ def main_func():
     gerencia_arquivos(nome_arquivo, NomePastaResultados)
 
     grava_resultados(nome_arquivo, NomePastaResultados, tipo_calculo)
+
+    print(f"\n✅ Processamento concluído!")
+    print(f"📁 Arquivos de saída salvos em: {NomePastaResultados}")
+    print(f"🔍 Para visualizar no CGX: cgx {nome_arquivo}.fbd")
 
     pass
 

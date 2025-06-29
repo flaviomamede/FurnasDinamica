@@ -16,3 +16,19 @@
 *.eig
 *.lst
 teste - Copia.txt
+
+# Arquivos de teste e resultados
+teste/*.geo
+teste/*.msh
+teste/*.inp
+teste/*.dat
+teste/*.out
+teste/*.fbd
+teste/*.frd
+teste/*.sta
+teste/*.pvd
+teste/*.m
+teste/*.cvg
+teste/*.eig
+teste/*.lst
+teste/resultados_*/
